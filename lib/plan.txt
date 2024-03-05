@@ -1,0 +1,18 @@
+home screen :
+    info
+    shortcuts: (assignments - homeworks - next session)
+calender:
+    choose class > show all sessions (sort by day then time)
+    choose day > show all sessions for each class(sort by class or time)
+
+assign homework :
+    press on session > go to description (time, class, subject, add homework)
+class profile:
+    shows the students in the class
+    and button shows his assignments to that class
+
+profile:
+    details
+    no. of classes
+    no. of subjects
+    go to assignments
