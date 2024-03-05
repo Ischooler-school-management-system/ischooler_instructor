@@ -21,7 +21,7 @@ class HomeOverviewWidget extends StatelessWidget {
       enabled: false,
       child: Container(
         // alignment: Alignment.bottomCenter,
-        height: IschoolerConstants.iSchooler_screen_height / 6,
+        height: IschoolerConstants.ischooler_screen_height / 6,
         margin: const EdgeInsets.symmetric(
           // horizontal: 20.0,
           vertical: 24.0,

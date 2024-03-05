@@ -20,7 +20,7 @@ abstract class IschoolerConstants {
   // Get the screen size, height, and width from the current currentContext!.
   static final Size ischooler_screen_size = MediaQuery.of(currentContext!).size;
 
-  static final double iSchooler_screen_height =
+  static final double ischooler_screen_height =
       MediaQuery.of(currentContext!).size.height;
 
   static final double ischooler_screen_width =

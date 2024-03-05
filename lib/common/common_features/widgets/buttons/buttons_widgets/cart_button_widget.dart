@@ -16,7 +16,7 @@ class _CartButtonWidget extends StatelessWidget {
           color: IschoolerColors.light_grey,
           borderRadius: BorderRadius.circular(30.r),
         ),
-        height: IschoolerConstants.iSchooler_screen_height / 28,
+        height: IschoolerConstants.ischooler_screen_height / 28,
         width: IschoolerConstants.ischooler_screen_width / 5,
         alignment: Alignment.center,
         padding: EdgeInsets.symmetric(horizontal: 2.w),

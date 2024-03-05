@@ -12,13 +12,13 @@ class _IschoolerAddRemoveButtonWidget extends StatelessWidget {
       children: [
         IschoolerButton(
           button: IschoolerIconButton(
-            height: IschoolerConstants.iSchooler_screen_height / 30,
+            height: IschoolerConstants.ischooler_screen_height / 30,
             width: IschoolerConstants.ischooler_screen_width / 30,
             onPressed: ischoolerAddRemoveButton.addButtonFunction,
             icon: Icon(Icons.add,
                 size: IschoolerConstants.isTablet
-                    ? IschoolerConstants.iSchooler_screen_height / 25
-                    : IschoolerConstants.iSchooler_screen_height / 35),
+                    ? IschoolerConstants.ischooler_screen_height / 25
+                    : IschoolerConstants.ischooler_screen_height / 35),
           ),
         ),
         Padding(
@@ -39,13 +39,13 @@ class _IschoolerAddRemoveButtonWidget extends StatelessWidget {
         ),
         IschoolerButton(
           button: IschoolerIconButton(
-            height: IschoolerConstants.iSchooler_screen_height / 30,
+            height: IschoolerConstants.ischooler_screen_height / 30,
             width: IschoolerConstants.ischooler_screen_width / 30,
             onPressed: ischoolerAddRemoveButton.subtractButtonFunction,
             icon: Icon(Icons.remove,
                 size: IschoolerConstants.isTablet
-                    ? IschoolerConstants.iSchooler_screen_height / 25
-                    : IschoolerConstants.iSchooler_screen_height / 35),
+                    ? IschoolerConstants.ischooler_screen_height / 25
+                    : IschoolerConstants.ischooler_screen_height / 35),
           ),
         ),
       ],
