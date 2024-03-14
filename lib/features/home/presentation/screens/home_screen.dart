@@ -6,14 +6,14 @@ import '../../../../common/common_features/widgets/buttons/ischooler_button_expo
 import '../../../../common/common_features/widgets/ischooler_screen.dart';
 import '../../../../common/ischooler_constants.dart';
 import '../../../../common/style/ischooler_colors.dart';
-import '../../../profile/data/models/student_model.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
 import '../../../profile/logic/cubit/profile_cubit.dart';
 import '../widgets/home_overview_widget.dart';
 import '../widgets/home_shortcut_button.dart';
 
 class HomeScreen extends StatelessWidget {
-  final StudentModel studentData;
-  const HomeScreen({super.key, required this.studentData});
+  final InstructorModel instructorData;
+  const HomeScreen({super.key, required this.instructorData});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            HomeOverviewWidget(studentData: studentData),
+            HomeOverviewWidget(instructorData: instructorData),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

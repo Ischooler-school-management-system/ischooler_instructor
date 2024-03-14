@@ -64,54 +64,6 @@ class DashboardNetwork implements IschoolerListNetwork {
   }
 
   @override
-  Future<bool> addItem({required IschoolerModel model}) async {
-    bool dataStored = false;
-    // String? docName = addWithId ? model.id : null;
-    try {
-      DatabaseTable tableQueryData =
-          IschoolerNetworkHelper.getTableQueryData(model);
-      if (tableQueryData == DatabaseTable.empty()) {
-        throw Exception(
-          'tableQueryData = $tableQueryData, '
-          'unable to add (model = $model) data',
-        );
-      }
-      Map<String, dynamic> data = model.toMap();
-      Madpoly.print(
-        'request will be sent is >> insert(), '
-        'tableQueryData: $tableQueryData, '
-        'data = $data',
-        tag: 'dashboard_network > add',
-        // color: MadpolyColor.purple,
-        isLog: true,
-        developer: "Ziad",
-      );
-      final query = await SupabaseCredentials.supabase
-          .from(tableQueryData.tableName)
-          .insert(data);
-      Madpoly.print(
-        color: MadpolyColor.green,
-        'query =',
-        inspectObject: query,
-        tag: 'dashboard_network > add',
-        developer: "Ziad",
-      );
-      // await response.doc(model.id).set(model.toMap());
-      dataStored = true;
-    } catch (e) {
-      _alertHandlingRepository.addError(
-        // 'unable to add user',
-        /* developerMessage: */ e.toString(),
-        AlertHandlingTypes.ServerError,
-        tag: 'admin_network > addData > catch',
-        showToast: true,
-      );
-    }
-
-    return dataStored;
-  }
-
-  @override
   Future<bool> updateItem({required IschoolerModel model}) async {
     bool dataUpdated = false;
     // String? docName = addWithId ? model.id : null;
@@ -159,52 +111,5 @@ class DashboardNetwork implements IschoolerListNetwork {
     }
 
     return dataUpdated;
-  }
-
-  @override
-  Future<bool> deleteItem({required IschoolerModel model}) async {
-    bool dataDeleted = false;
-    try {
-      DatabaseTable tableQueryData =
-          IschoolerNetworkHelper.getTableQueryData(model);
-      if (tableQueryData == DatabaseTable.empty()) {
-        throw Exception(
-          'tableQueryData = $tableQueryData, '
-          'unable to delete (model = $model) data',
-        );
-      }
-      Madpoly.print(
-        'request will be sent is >> delete(), '
-        'tableQueryData: $tableQueryData, ',
-        inspectObject: model,
-        tag: 'dashboard_network > deleteItem',
-        isLog: true,
-        // color: MadpolyColor.purple,
-        developer: "Ziad",
-      );
-      final query = await SupabaseCredentials.supabase
-          .from(tableQueryData.tableName)
-          .delete()
-          .eq('id', model.id);
-      Madpoly.print(
-        'query= ',
-        inspectObject: query,
-        color: MadpolyColor.green,
-        tag: 'dashboard_network > delete',
-        developer: "Ziad",
-      );
-
-      dataDeleted = true;
-    } catch (e) {
-      _alertHandlingRepository.addError(
-        'unable to add user',
-        developerMessage: e.toString(),
-        AlertHandlingTypes.ServerError,
-        tag: 'admin_network > delete > catch',
-        showToast: true,
-      );
-    }
-
-    return dataDeleted;
   }
 }

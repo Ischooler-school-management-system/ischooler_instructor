@@ -15,10 +15,12 @@ class WeeklySessionsRepository {
       : _alertHandlingRepository = alertHandlingRepository,
         _adminNetwork = adminNetwork;
 
-  Future<WeeklySessionsListModel> getAllItems({
+  Future<WeeklySessionsListModel> getAllItems(
+      /* {
     required String classId,
     required String weekdayId,
-  }) async {
+  } */
+      ) async {
     WeeklySessionsListModel listModel = WeeklySessionsListModel.empty();
     // Madpoly.print(
     //   ' model >> ${model.runtimeType}',
@@ -29,7 +31,9 @@ class WeeklySessionsRepository {
     // );
     try {
       IschoolerResponse response = await _adminNetwork.getAllItems(
-          weeklyTimetableId: classId, weekdayId: weekdayId);
+          // weeklyTimetableId: classId,
+          // weekdayId: weekdayId,
+          );
       // if (response.hasData) {
 
       listModel = WeeklySessionsListModel.fromMap(response.data);

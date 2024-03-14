@@ -2,25 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../common/common_features/widgets/ischooler_image_widget.dart';
+import '../../../../common/ischooler_constants.dart';
 import '../../../../common/style/ischooler_colors.dart';
-import '../../data/models/student_model.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
 
 class ProfileOverviewWidget extends StatelessWidget {
-  final StudentModel studentData;
+  final InstructorModel instructorData;
   const ProfileOverviewWidget({
     super.key,
-    required this.studentData,
+    required this.instructorData,
   });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220.h,
+      height: IschoolerConstants.ischooler_screen_height / 3.2,
       child: Stack(
         children: [
           /// background curved blue container
           Container(
-            height: 120.h,
+            height: IschoolerConstants.ischooler_screen_height / 5,
             decoration: BoxDecoration(
               color: IschoolerColors.blue,
               borderRadius: BorderRadius.only(
@@ -40,14 +41,13 @@ class ProfileOverviewWidget extends StatelessWidget {
               margin: EdgeInsets.symmetric(
                 horizontal: 18.w,
               ),
-              height: 150.h,
+              height: IschoolerConstants.ischooler_screen_height / 4.5,
               decoration: BoxDecoration(
                 color: IschoolerColors.white,
                 borderRadius: BorderRadius.circular(10.r),
               ),
               alignment: Alignment.bottomCenter,
               child: SizedBox(
-                height: 80.h,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -78,22 +78,22 @@ class ProfileOverviewWidget extends StatelessWidget {
           Align(
             alignment: const Alignment(0.0, -0.4),
             child: SizedBox(
-              height: 140.h,
+              height: IschoolerConstants.ischooler_screen_height / 4.5,
               child: Column(
                 children: [
                   IschoolerImageWidget(
                     circleAvatarRadius: 40.r,
-                    url: studentData.profilePicture,
+                    url: instructorData.profilePicture,
                   ),
                   Text(
-                    studentData.name,
+                    instructorData.name,
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   Text(
-                    '${studentData.classData.grade.name} | ${studentData.classData.name}',
+                    instructorData.specialization,
                     style: const TextStyle(
                       fontSize: 16,
                       color: IschoolerColors.lightBlack,

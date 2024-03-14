@@ -19,7 +19,7 @@ class ProfileState extends IschoolerState {
   ProfileState updateData(IschoolerModel newData) {
     return _copyWith(
       // ischoolerModel: newData is AdminsListModel ? newData : null,
-      ischoolerModel: newData is StudentModel ? newData : null,
+      ischoolerModel: newData is InstructorModel ? newData : null,
       status: IschoolerStatus.loaded,
     );
   }

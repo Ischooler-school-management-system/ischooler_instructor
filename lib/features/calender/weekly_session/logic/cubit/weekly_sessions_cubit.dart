@@ -22,17 +22,19 @@ class WeeklySessionsCubit extends Cubit<WeeklySessionsState> {
         _loadingRepository = loadingRepository,
         super(WeeklySessionsState.init());
 
-  Future<void> getAllItems({
+  Future<void> getAllItems(
+      /* {
     required String classId,
     required String weekdayId,
-  }) async {
+  } */
+      ) async {
     _loadingRepository.startLoading(LoadingType.normal);
     IschoolerListModel response =
         //model is sent here to get the type of request only
         await _weeklySessionsRepository.getAllItems(
-      classId: classId,
-      weekdayId: weekdayId,
-    );
+            // classId: classId,
+            // weekdayId: weekdayId,
+            );
     if (response is WeeklySessionsListModel) {
       emit(state.updateData(response));
     } else {
@@ -55,7 +57,7 @@ class WeeklySessionsCubit extends Cubit<WeeklySessionsState> {
 
     await _weeklySessionsRepository.addItem(model: model);
     emit(state.updateStatus());
-    await getAllItems(classId: classId, weekdayId: weekdayId);
+    await getAllItems(/* classId: classId, weekdayId: weekdayId */);
     // _loadingRepository.stopLoading();
   }
 
@@ -70,7 +72,7 @@ class WeeklySessionsCubit extends Cubit<WeeklySessionsState> {
         await _weeklySessionsRepository.updateItem(model: model);
     if (successfulRequest) {
       emit(state.updateStatus());
-      await getAllItems(classId: classId, weekdayId: weekdayId);
+      await getAllItems(/* classId: classId, weekdayId: weekdayId */);
     } // _loadingRepository.stopLoading();
   }
 
@@ -83,6 +85,6 @@ class WeeklySessionsCubit extends Cubit<WeeklySessionsState> {
 
     await _weeklySessionsRepository.deleteItem(model: model);
     emit(state.updateStatus());
-    await getAllItems(classId: classId, weekdayId: weekdayId);
+    await getAllItems(/* classId: classId, weekdayId: weekdayId */);
   }
 }

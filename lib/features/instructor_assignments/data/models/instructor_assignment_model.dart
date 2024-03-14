@@ -1,13 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-
-import '../../../../../common/ischooler_model.dart';
-import '../../../../class_data/data/models/class_model.dart';
-import 'instructor_model.dart';
-import 'subject_model.dart';
+import '../../../../common/ischooler_model.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
+import '../../../calender/weekly_session/data/models/subject_model.dart';
+import '/features/class_data/data/models/class_model.dart';
 
 class InstructorAssignmentModel extends IschoolerModel {
   final InstructorModel? instructor;
-  final ClassDataModel? classModel;
+  final ClassDataModel? classData;
   final SubjectModel? subjectModel;
   // final DateTime createdAt;
 
@@ -15,7 +14,7 @@ class InstructorAssignmentModel extends IschoolerModel {
     required super.id,
     required super.name,
     required this.instructor,
-    required this.classModel,
+    required this.classData,
     required this.subjectModel,
     // required this.createdAt,
   });
@@ -25,17 +24,17 @@ class InstructorAssignmentModel extends IschoolerModel {
       id: '',
       name: '',
       instructor: InstructorModel.empty(),
-      classModel: ClassDataModel.empty(),
+      classData: ClassDataModel.empty(),
       subjectModel: SubjectModel.empty(),
       // createdAt: DateTime.parse(map['created_at']),
     );
   }
   factory InstructorAssignmentModel.dummy() {
     return InstructorAssignmentModel(
-      id: '1',
+      id: '-1',
       name: 'name',
       instructor: InstructorModel.dummy(),
-      classModel: ClassDataModel.dummy(),
+      classData: ClassDataModel.dummy(),
       subjectModel: SubjectModel.dummy(),
       // createdAt: DateTime.parse(map['created_at']),
     );
@@ -49,7 +48,7 @@ class InstructorAssignmentModel extends IschoolerModel {
       instructor: map['instructor'] == null
           ? null
           : InstructorModel.fromMap(map['instructor']),
-      classModel:
+      classData:
           map['class'] == null ? null : ClassDataModel.fromMap(map['class']),
       subjectModel:
           map['subject'] == null ? null : SubjectModel.fromMap(map['subject']),
@@ -60,7 +59,7 @@ class InstructorAssignmentModel extends IschoolerModel {
   Map<String, dynamic> toDisplayMap() {
     return {
       'Name': name,
-      'Class': classModel == null ? '' : classModel!.name,
+      'Class': classData == null ? '' : classData!.name,
       'instrucor': instructor == null ? '' : instructor!.name,
       'subject': subjectModel == null ? '' : subjectModel!.name,
     };
@@ -72,7 +71,7 @@ class InstructorAssignmentModel extends IschoolerModel {
       "name": name,
       if (instructor != null) "instructor_id": instructor!.id,
       if (subjectModel != null) "subject_id": subjectModel!.id,
-      if (classModel != null) "class_id": classModel!.id,
+      if (classData != null) "class_id": classData!.id,
     };
   }
 
@@ -88,12 +87,12 @@ class InstructorAssignmentModel extends IschoolerModel {
       id: id,
       name: name ?? this.name,
       instructor: instructor ?? this.instructor,
-      classModel: classModel ?? this.classModel,
+      classData: classModel ?? this.classData,
       subjectModel: subjectModel ?? this.subjectModel,
     );
   }
 
   @override
   String toString() =>
-      'InstructorAssignmentModel(instructor: $instructor, classModel: $classModel, subjectModel: $subjectModel)';
+      'InstructorAssignmentModel(instructor: $instructor, classModel: $classData, subjectModel: $subjectModel)';
 }

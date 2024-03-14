@@ -42,7 +42,7 @@ class _GenericDropDownWidgetState<C extends IschoolerListCubit>
           ischoolerAllModel = state.ischoolerAllModel;
         }
         List<String> options = ischoolerAllModel.getItemNames();
-        return EduconnectDropdownWidget(
+        return IschoolerDropdownWidget(
           labelText: widget.labelText,
           hint: widget.hint ?? options.first,
           onChanged: (value) {

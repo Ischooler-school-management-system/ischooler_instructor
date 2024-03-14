@@ -46,7 +46,7 @@ class IschoolerMaterialApp extends StatelessWidget {
     return BlocBuilder<LangBloc, LangState>(
       builder: (context, state) {
         return MaterialApp(
-          title: 'Educonnect',
+          title: 'Ischooler',
           // material app initial settings
           // 1. localization(3)
           locale: localeMethod(state),

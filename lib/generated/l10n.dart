@@ -660,11 +660,11 @@ class S {
     );
   }
 
-  /// `Student Detail`
-  String get student_detail {
+  /// `Instructor Details`
+  String get instructor_detail {
     return Intl.message(
-      'Student Detail',
-      name: 'student_detail',
+      'Instructor Details',
+      name: 'instructor_detail',
       desc: '',
       args: [],
     );

@@ -62,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "homeworks": MessageLookupByLibrary.simpleMessage("الواجبات المنزلية"),
         "id": MessageLookupByLibrary.simpleMessage("الرقم التعريفي"),
+        "instructor_detail":
+            MessageLookupByLibrary.simpleMessage("بيانات المدرس"),
         "loading": MessageLookupByLibrary.simpleMessage("جاري تحديث البيانات"),
         "login_dialog_content": MessageLookupByLibrary.simpleMessage(
             "يجب أن تقوم بتسجيل الدخول للوصول إلى هذه الميزة."),
@@ -95,7 +97,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("إنشاء حساب"),
         "sign_up_prompt":
             MessageLookupByLibrary.simpleMessage("قم بأنشاء حساب وابدأ"),
-        "student_detail": MessageLookupByLibrary.simpleMessage("بيانات الطالب"),
         "students": MessageLookupByLibrary.simpleMessage("الطلبه"),
         "subjects": MessageLookupByLibrary.simpleMessage("المواد"),
         "teachers": MessageLookupByLibrary.simpleMessage("المدرسين"),

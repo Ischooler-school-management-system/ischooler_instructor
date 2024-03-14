@@ -41,17 +41,6 @@ class WeekdaysCubit extends IschoolerListCubit<WeekdaysState> {
   }
 
   @override
-  Future<void> addItem({required IschoolerModel model}) async {
-    _loadingRepository.startLoading(LoadingType.normal);
-    if (model is WeekdayModel) {
-      await _weekdaysRepository.addItem(model: model);
-    }
-    emit(state.updateStatus());
-    await getAllItems();
-    // _loadingRepository.stopLoading();
-  }
-
-  @override
   Future<void> updateItem({required IschoolerModel model}) async {
     _loadingRepository.startLoading(LoadingType.normal);
     bool successfulRequest = false;
@@ -62,22 +51,5 @@ class WeekdaysCubit extends IschoolerListCubit<WeekdaysState> {
       emit(state.updateStatus());
       await getAllItems();
     } // _loadingRepository.stopLoading();
-  }
-
-  @override
-  Future<void> deleteItem({required IschoolerModel model}) async {
-    _loadingRepository.startLoading(LoadingType.normal);
-
-    if (model is WeekdayModel) {
-      await _weekdaysRepository.deleteItem(model: model);
-    }
-    emit(state.updateStatus());
-    await getAllItems();
-  }
-
-  @override
-  Future<void> getItem({required String id}) {
-    // TODO: implement getItem
-    throw UnimplementedError();
   }
 }

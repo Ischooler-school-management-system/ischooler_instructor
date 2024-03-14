@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'common/common_features/widgets/buttons/ischooler_button_export.dart';
-import 'common/common_features/widgets/ischooler_screen.dart';
 import 'common/common_features/widgets/ischooler_navbar_item.dart';
+import 'common/common_features/widgets/ischooler_screen.dart';
 import 'common/ischooler_constants.dart';
 import 'common/madpoly.dart';
 import 'common/style/ischooler_colors.dart';
+import 'features/calender/weekly_session/data/models/instructor_model.dart';
 import 'features/calender/weekly_timetable/presentation/screens/time_table_screen.dart';
 import 'features/dashboard/logic/cubit/ischooler_list_cubit.dart';
-import 'features/profile/data/models/student_model.dart';
-import 'features/profile/logic/cubit/profile_cubit.dart';
 import 'features/home/presentation/screens/home_screen.dart';
+import 'features/profile/logic/cubit/profile_cubit.dart';
 import 'features/profile/presentation/screens/profile_screen.dart';
 
 // ischooler_bottom_navbar
@@ -32,11 +32,11 @@ class _IschoolerBottomNavbarState extends State<IschoolerBottomNavbar> {
   }
 
   int _currentIndex = 0;
-  screensBuilder(StudentModel studentData) {
+  screensBuilder(InstructorModel instructorData) {
     final List<Widget> screens = [
-      HomeScreen(studentData: studentData),
-      TimeTableScreen(classData: studentData.classData),
-      ProfileScreen(studentData: studentData),
+      HomeScreen(instructorData: instructorData),
+      const TimeTableScreen(),
+      ProfileScreen(instructorData: instructorData),
     ];
     return screens[_currentIndex];
   }
@@ -64,12 +64,12 @@ class _IschoolerBottomNavbarState extends State<IschoolerBottomNavbar> {
       body: Stack(
         children: [
           BlocBuilder<ProfileCubit, ProfileState>(builder: (context, state) {
-            StudentModel studentData = StudentModel.empty();
+            InstructorModel instructorData = InstructorModel.empty();
             if (state.status == IschoolerStatus.loaded &&
-                state.ischoolerModel is StudentModel) {
-              studentData = state.ischoolerModel as StudentModel;
+                state.ischoolerModel is InstructorModel) {
+              instructorData = state.ischoolerModel as InstructorModel;
             }
-            return Positioned.fill(child: screensBuilder(studentData));
+            return Positioned.fill(child: screensBuilder(instructorData));
           }),
           Align(
             alignment: Alignment.bottomCenter,

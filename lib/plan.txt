@@ -2,8 +2,10 @@ home screen :
     info
     shortcuts: (assignments - homeworks - next session)
 calender:
+
     choose class > show all sessions (sort by day then time)
     choose day > show all sessions for each class(sort by class or time)
+    insass id > search in sessions
 
 assign homework :
     press on session > go to description (time, class, subject, add homework)
@@ -16,3 +18,6 @@ profile:
     no. of classes
     no. of subjects
     go to assignments
+
+
+

@@ -5,7 +5,7 @@ import '../../ischooler_constants.dart';
 import '../../style/ischooler_colors.dart';
 import '../../style/ischooler_text_theme.dart';
 
-class EduconnectDropdownWidget extends StatefulWidget {
+class IschoolerDropdownWidget extends StatefulWidget {
   final List<String> options;
   final ValueChanged<String?> onChanged;
   final String? hint;
@@ -14,7 +14,7 @@ class EduconnectDropdownWidget extends StatefulWidget {
   final bool enableValidation;
   final String? labelText;
 
-  const EduconnectDropdownWidget({
+  const IschoolerDropdownWidget({
     super.key,
     required this.options,
     required this.onChanged,
@@ -26,11 +26,11 @@ class EduconnectDropdownWidget extends StatefulWidget {
   });
 
   @override
-  State<EduconnectDropdownWidget> createState() =>
-      _EduconnectDropdownWidgetState();
+  State<IschoolerDropdownWidget> createState() =>
+      _IschoolerDropdownWidgetState();
 }
 
-class _EduconnectDropdownWidgetState extends State<EduconnectDropdownWidget> {
+class _IschoolerDropdownWidgetState extends State<IschoolerDropdownWidget> {
   String? selectedValue;
   bool isValidValue(value) {
     return widget.options.contains(value);

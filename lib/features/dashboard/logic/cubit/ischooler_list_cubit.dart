@@ -10,8 +10,7 @@ abstract class IschoolerListCubit<S extends IschoolerListState>
   IschoolerListCubit(super.initialState);
 
   Future<void> getAllItems();
-  Future<void> getItem({required String id});
-  Future<void> addItem({required IschoolerModel model});
+  // Future<void> addItem({required IschoolerModel model});
   Future<void> updateItem({required IschoolerModel model});
-  Future<void> deleteItem({required IschoolerModel model});
+  // Future<void> deleteItem({required IschoolerModel model});
 }

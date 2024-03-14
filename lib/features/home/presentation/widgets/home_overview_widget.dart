@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ischooler_instructor/common/ischooler_constants.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 import '../../../../common/common_features/widgets/ischooler_image_widget.dart';
+import '../../../../common/ischooler_constants.dart';
 import '../../../../common/style/ischooler_colors.dart';
-import '../../../profile/data/models/student_model.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
 
 class HomeOverviewWidget extends StatelessWidget {
-  final StudentModel studentData;
+  final InstructorModel instructorData;
 
   const HomeOverviewWidget({
     super.key,
-    required this.studentData,
+    required this.instructorData,
   });
 
   @override
@@ -44,11 +44,11 @@ class HomeOverviewWidget extends StatelessWidget {
             children: [
               customListTile(
                 title: Text(
-                  'مرحبا ${studentData.name}',
+                  'مرحبا ${instructorData.name}',
                   style: const TextStyle(color: Colors.white, fontSize: 18),
                 ),
                 subtitle: Text(
-                  '${studentData.classData.grade.name} | ${studentData.classData.name}',
+                  instructorData.specialization,
                   style: const TextStyle(
                       color: IschoolerColors.darkWhite, fontSize: 16),
                 ),
@@ -60,9 +60,11 @@ class HomeOverviewWidget extends StatelessWidget {
                 // ),
                 trailing: IschoolerImageWidget(
                   circleAvatarRadius: 25.r,
-                  url: studentData.profilePicture,
+                  url: instructorData.profilePicture,
                 ),
               ),
+              SizedBox(height: 8.0.h),
+
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

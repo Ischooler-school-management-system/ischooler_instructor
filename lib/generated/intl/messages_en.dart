@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "homeworks": MessageLookupByLibrary.simpleMessage("Homeworks"),
         "id": MessageLookupByLibrary.simpleMessage("ID"),
+        "instructor_detail":
+            MessageLookupByLibrary.simpleMessage("Instructor Details"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "login_dialog_content": MessageLookupByLibrary.simpleMessage(
             "Login to access this feature"),
@@ -97,8 +99,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "sign_up": MessageLookupByLibrary.simpleMessage("Sign up"),
         "sign_up_prompt":
             MessageLookupByLibrary.simpleMessage("Sign up and get started"),
-        "student_detail":
-            MessageLookupByLibrary.simpleMessage("Student Detail"),
         "students": MessageLookupByLibrary.simpleMessage("Students"),
         "subjects": MessageLookupByLibrary.simpleMessage("Subjects"),
         "teachers": MessageLookupByLibrary.simpleMessage("Teachers"),

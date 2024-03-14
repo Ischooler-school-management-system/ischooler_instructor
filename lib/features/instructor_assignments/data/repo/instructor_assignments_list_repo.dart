@@ -3,44 +3,52 @@ import '../../../../common/common_features/alert_handling/data/repo/alert_handli
 import '../../../../common/ischooler_model.dart';
 import '../../../../common/madpoly.dart';
 import '../../../../common/network/ischooler_response.dart';
-import '../../../calender/weekly_session/data/models/instructor_model.dart';
-import '../../../dashboard/data/repo/ischooler_repository_interface.dart';
-import '../network/profile_network.dart';
+import '../../../dashboard/data/repo/ischooler_list_repository_interface.dart';
+import '../network/instructor_assignments_list_network.dart';
 
-class ProfileRepository implements IschoolerRepository {
+class InstructorAssignmentRepository implements IschoolerListRepository {
   final AlertHandlingRepository _alertHandlingRepository;
-  final ProfileNetwork _adminNetwork;
+  final InstructorAssignmentNetwork _instructorAssignmentNetwork;
 
-  ProfileRepository(AlertHandlingRepository alertHandlingRepository,
-      ProfileNetwork adminNetwork)
+  InstructorAssignmentRepository(
+      AlertHandlingRepository alertHandlingRepository,
+      InstructorAssignmentNetwork instructorAssignmentNetwork)
       : _alertHandlingRepository = alertHandlingRepository,
-        _adminNetwork = adminNetwork;
+        _instructorAssignmentNetwork = instructorAssignmentNetwork;
 
   @override
-  Future<IschoolerModel> getItem({required String id}) async {
-    IschoolerModel listModel = IschoolerModel.empty();
+  Future<IschoolerListModel> getAllItems({
+    required IschoolerListModel model,
+    Map<String, dynamic>? eqMap,
+  }) async {
+    IschoolerListModel listModel = IschoolerListModel.empty();
     Madpoly.print(
-      ' id >> $id',
+      ' model >> ${model.runtimeType}',
+      inspectObject: model,
       tag: 'repo > getAllItems ',
       developer: "Ziad",
       // showToast: true,
     );
     try {
-      IschoolerResponse response = await _adminNetwork.getItem(id: id);
+      IschoolerResponse response =
+          await _instructorAssignmentNetwork.getAllItems(
+        model: model,
+        eqMap: eqMap,
+      );
       // if (response.hasData) {
 
-      listModel = InstructorModel.fromMap(response.data);
+      listModel = model.fromMapToChild(response.data);
       Madpoly.print(
         'response = ',
         color: MadpolyColor.green,
         inspectObject: listModel,
-        tag: 'profile_repo > getAllItems',
+        tag: 'dashboard_repo > getAllItems',
         developer: "Ziad",
       );
       _alertHandlingRepository.addError(
         'data retrieved successfully',
         AlertHandlingTypes.Alert,
-        tag: 'profile_repo > getAllItems',
+        tag: 'dashboard_repo > getAllItems',
         // showToast: true,
       );
       // }
@@ -48,7 +56,7 @@ class ProfileRepository implements IschoolerRepository {
       _alertHandlingRepository.addError(
         e.toString(),
         AlertHandlingTypes.ServerError,
-        tag: 'profile_repo > getAllItems',
+        tag: 'dashboard_repo > getAllItems',
         showToast: true,
       );
     }
@@ -59,12 +67,13 @@ class ProfileRepository implements IschoolerRepository {
   Future<bool> updateItem({required IschoolerModel model}) async {
     bool requestSuccess = false;
     try {
-      bool successfulRequest = await _adminNetwork.updateItem(model: model);
+      bool successfulRequest =
+          await _instructorAssignmentNetwork.updateItem(model: model);
       if (successfulRequest) {
         _alertHandlingRepository.addError(
           'Data Updated Successfully',
           AlertHandlingTypes.Alert,
-          tag: 'profile_repo > updateItem',
+          tag: 'dashboard_repo > updateItem',
           // showToast: true,
         );
         requestSuccess = true;
@@ -75,7 +84,7 @@ class ProfileRepository implements IschoolerRepository {
       _alertHandlingRepository.addError(
         e.toString(),
         AlertHandlingTypes.ServerError,
-        tag: 'profile_repo > updateItem',
+        tag: 'dashboard_repo > updateItem',
         showToast: true,
       );
     }

@@ -13,10 +13,8 @@ import 'table_session_widget.dart';
 class DayTableWidget extends StatelessWidget {
   final Function()? onAddSessionPressed;
   // final WeeklySessionsListModel weeklySessionsListModel;
-  final WeeklyTimetableModel timeTable;
   const DayTableWidget({
     super.key,
-    required this.timeTable,
     // required this.weeklySessionsListModel,
     this.onAddSessionPressed,
   });
@@ -31,8 +29,8 @@ class DayTableWidget extends StatelessWidget {
           state.ischoolerAllModel is WeeklySessionsListModel) {
         weeklySessionsListModel =
             state.ischoolerAllModel as WeeklySessionsListModel;
-        weeklySessionsListModel =
-            weeklySessionsListModel.setSessionsTiming(timeTable: timeTable);
+        // weeklySessionsListModel =
+        //     weeklySessionsListModel.setSessionsTiming(timeTable: timeTable);
       }
       return SingleChildScrollView(
         child: Column(

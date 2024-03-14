@@ -1,3 +1,5 @@
+import 'package:supabase_flutter/supabase_flutter.dart';
+
 import '../../../../../common/common_features/alert_handling/data/models/alert_handling_model.dart';
 import '../../../../../common/common_features/alert_handling/data/repo/alert_handling_repo.dart';
 import '../../../../../common/madpoly.dart';
@@ -13,49 +15,46 @@ class WeeklySessionsNetwork {
       : _alertHandlingRepository = alertHandlingRepository;
 
   Future<IschoolerResponse> getAllItems(
-      {required String weeklyTimetableId,
-      required String weekdayId,
-      DatabaseTable? table}) async {
+      /* {
+    required String weeklyTimetableId,
+    required String weekdayId,
+    DatabaseTable? table,
+  } */
+      ) async {
     IschoolerResponse response = IschoolerResponse.empty();
     try {
-      if (weeklyTimetableId == '' || weekdayId == '') {
-        throw Exception(
-          'unable to get data',
-        );
-      }
       /*  final CollectionReference<Map<String, dynamic>> reference =
           IschoolerNetworkHelper.fireStoreInstance.collection(tableQueryData.tableName); */
+
+      User? user = SupabaseCredentials.authInstance.currentUser;
       Madpoly.print(
-        'request will be sent is >>  get(), ',
-        tag: 'weeklysessions_network > getAllItems, '
-            'weeklyTimetableId = $weeklyTimetableId, weekdayId = $weekdayId',
+        'request will be sent is >> get(), '
+        '',
+        tag: 'weekly_sessions_network > getAllItems',
         // color: MadpolyColor.purple,
         isLog: true,
         developer: "Ziad",
       );
+      if (user != null) {
+        final List<Map<String, dynamic>> weeklySessions =
+            await SupabaseCredentials.supabase
+                .from('weekly_sessions')
+                .select('*,instructor_assignment('
+                    'subject(id,name),class(id,name),instructor(id,name)'
+                    '),weekly_timetable_day(*))')
+                .eq('instructor_assignment.instructor_id', user.id)
+                .order('id', ascending: true);
 
-      final List<
-          Map<String,
-              dynamic>> weeklySessions = await SupabaseCredentials.supabase
-          .from('weekly_sessions')
-          .select(
-              '*,instructor_assignment(subject(id,name),instructor(id,name))'
-              // '*,instructor_assignment(*)'
-              ',weekly_timetable_day(*))')
-          .eq('weekly_timetable_day.weekly_timetable_id', weeklyTimetableId)
-          .eq('weekly_timetable_day.weekday_id', weekdayId)
-          .not('weekly_timetable_day', 'is', 'null')
-          .order('id', ascending: true);
-
-      Madpoly.print(
-        'query= ',
-        inspectObject: weeklySessions,
-        color: MadpolyColor.green,
-        tag: 'weeklysessions_network > getAllItems',
-        developer: "Ziad",
-      );
-      response =
-          IschoolerResponse(hasData: true, data: {'items': weeklySessions});
+        Madpoly.print(
+          'query= ',
+          inspectObject: weeklySessions,
+          color: MadpolyColor.green,
+          tag: 'weekly_sessions_network > getAllItems',
+          developer: "Ziad",
+        );
+        response =
+            IschoolerResponse(hasData: true, data: {'items': weeklySessions});
+      }
     } catch (e) {
       _alertHandlingRepository.addError(
         e.toString(),
@@ -84,7 +83,7 @@ class WeeklySessionsNetwork {
         'request will be sent is >> insert(), '
         'tableQueryData: $tableQueryData, '
         'data = $data',
-        tag: 'weeklysessions_network > add',
+        tag: 'weekly_sessions_network > add',
         // color: MadpolyColor.purple,
         isLog: true,
         developer: "Ziad",
@@ -96,7 +95,7 @@ class WeeklySessionsNetwork {
         color: MadpolyColor.green,
         'query =',
         inspectObject: query,
-        tag: 'weeklysessions_network > add',
+        tag: 'weekly_sessions_network > add',
         developer: "Ziad",
       );
       // await response.doc(model.id).set(model.toMap());
@@ -132,7 +131,7 @@ class WeeklySessionsNetwork {
         'table: ${tableQueryData.tableName}, '
         'data = ',
         inspectObject: data,
-        tag: 'weeklysessions_network > update',
+        tag: 'weekly_sessions_network > update',
         // color: MadpolyColor.purple,
         isLog: true,
         developer: "Ziad",
@@ -145,7 +144,7 @@ class WeeklySessionsNetwork {
         'query= ',
         color: MadpolyColor.green,
         inspectObject: query,
-        tag: 'weeklysessions_network > update',
+        tag: 'weekly_sessions_network > update',
         developer: "Ziad",
       );
       // await response.doc(model.id).set(model.toMap());
@@ -178,7 +177,7 @@ class WeeklySessionsNetwork {
         'request will be sent is >> delete(), '
         'tableQueryData: $tableQueryData, ',
         inspectObject: model,
-        tag: 'weeklysessions_network > deleteItem',
+        tag: 'weekly_sessions_network > deleteItem',
         isLog: true,
         // color: MadpolyColor.purple,
         developer: "Ziad",
@@ -191,7 +190,7 @@ class WeeklySessionsNetwork {
         'query= ',
         inspectObject: query,
         color: MadpolyColor.green,
-        tag: 'weeklysessions_network > delete',
+        tag: 'weekly_sessions_network > delete',
         developer: "Ziad",
       );
 

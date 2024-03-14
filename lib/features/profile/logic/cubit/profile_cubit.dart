@@ -2,10 +2,10 @@ import '../../../../../common/common_features/loading/data/models/loading_model.
 import '../../../../../common/common_features/loading/data/repo/loading_repo.dart';
 import '../../../../../common/ischooler_model.dart';
 import '../../../../../common/madpoly.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
 import '../../../dashboard/logic/cubit/ischooler_cubit.dart';
 import '../../../dashboard/logic/cubit/ischooler_list_cubit.dart';
 import '../../../dashboard/logic/cubit/ischooler_state.dart';
-import '../../data/models/student_model.dart';
 import '../../data/repo/profile_repo.dart';
 
 part 'profile_state.dart';
@@ -27,7 +27,7 @@ class ProfileCubit extends IschoolerCubit<ProfileState> {
     IschoolerModel response =
         //model is sent here to get the type of request only
         await _profileRepository.getItem(id: id);
-    if (response is StudentModel) {
+    if (response is InstructorModel) {
       emit(state.updateData(response));
     } else {
       Madpoly.print(
@@ -41,15 +41,6 @@ class ProfileCubit extends IschoolerCubit<ProfileState> {
   }
 
   @override
-  Future<void> addItem({required IschoolerModel model}) async {
-    _loadingRepository.startLoading(LoadingType.normal);
-    await _profileRepository.addItem(model: model);
-    emit(state.updateStatus());
-    // await getAllItems();
-    // _loadingRepository.stopLoading();
-  }
-
-  @override
   Future<void> updateItem({required IschoolerModel model}) async {
     _loadingRepository.startLoading(LoadingType.normal);
     bool successfulRequest = await _profileRepository.updateItem(model: model);
@@ -57,13 +48,5 @@ class ProfileCubit extends IschoolerCubit<ProfileState> {
       emit(state.updateStatus());
       // await getAllItems();
     } // _loadingRepository.stopLoading();
-  }
-
-  @override
-  Future<void> deleteItem({required IschoolerModel model}) async {
-    _loadingRepository.startLoading(LoadingType.normal);
-    await _profileRepository.deleteItem(model: model);
-    emit(state.updateStatus());
-    // await getAllItems();
   }
 }

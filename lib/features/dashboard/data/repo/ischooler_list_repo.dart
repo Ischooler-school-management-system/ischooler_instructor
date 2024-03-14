@@ -3,7 +3,7 @@ import '../../../../common/common_features/alert_handling/data/repo/alert_handli
 import '../../../../common/ischooler_model.dart';
 import '../../../../common/madpoly.dart';
 import '../../../../common/network/ischooler_response.dart';
-import '../network/dashboard_network.dart';
+import '../network/ischooler_network.dart';
 import 'ischooler_list_repository_interface.dart';
 
 class DashboardRepository implements IschoolerListRepository {
@@ -58,33 +58,6 @@ class DashboardRepository implements IschoolerListRepository {
   }
 
   @override
-  Future<bool> addItem(
-      {required IschoolerModel model, bool addWithId = false}) async {
-    bool requestSuccess = false;
-    try {
-      bool requestSuccess = await _adminNetwork.addItem(model: model);
-      if (requestSuccess) {
-        _alertHandlingRepository.addError(
-          'Data Added Successfully',
-          AlertHandlingTypes.Alert,
-          tag: 'dashboard_repo > addItem',
-          showToast: true,
-        );
-      } else {
-        throw Exception('unable to add user');
-      }
-    } catch (e) {
-      _alertHandlingRepository.addError(
-        e.toString(),
-        AlertHandlingTypes.ServerError,
-        tag: 'dashboard_repo > addItem',
-        showToast: true,
-      );
-    }
-    return requestSuccess;
-  }
-
-  @override
   Future<bool> updateItem({required IschoolerModel model}) async {
     bool requestSuccess = false;
     try {
@@ -105,32 +78,6 @@ class DashboardRepository implements IschoolerListRepository {
         e.toString(),
         AlertHandlingTypes.ServerError,
         tag: 'dashboard_repo > updateItem',
-        showToast: true,
-      );
-    }
-    return requestSuccess;
-  }
-
-  @override
-  Future<bool> deleteItem({required IschoolerModel model}) async {
-    bool requestSuccess = false;
-    try {
-      bool requestSuccess = await _adminNetwork.deleteItem(model: model);
-      if (requestSuccess) {
-        _alertHandlingRepository.addError(
-          'Data Deleted Successfully',
-          AlertHandlingTypes.Alert,
-          tag: 'dashboard_repo > delete',
-          showToast: true,
-        );
-      } else {
-        throw Exception('unable to delete item');
-      }
-    } catch (e) {
-      _alertHandlingRepository.addError(
-        e.toString(),
-        AlertHandlingTypes.ServerError,
-        tag: 'dashboard_repo > delete',
         showToast: true,
       );
     }

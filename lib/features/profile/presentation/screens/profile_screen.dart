@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../auth/logic/cubit/auth_cubit.dart';
 
 import '../../../../common/common_features/widgets/buttons/ischooler_button.dart';
 import '../../../../common/common_features/widgets/buttons/models/buttons_model.dart';
@@ -8,13 +7,14 @@ import '../../../../common/common_features/widgets/ischooler_screen.dart';
 import '../../../../common/ischooler_constants.dart';
 import '../../../../common/navigation/router.export.dart';
 import '../../../../common/style/ischooler_colors.dart';
-import '../../data/models/student_model.dart';
+import '../../../auth/logic/cubit/auth_cubit.dart';
+import '../../../calender/weekly_session/data/models/instructor_model.dart';
 import '../widgets/profile_details_widget.dart';
 import '../widgets/profile_overview_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
-  final StudentModel studentData;
-  const ProfileScreen({super.key, required this.studentData});
+  final InstructorModel instructorData;
+  const ProfileScreen({super.key, required this.instructorData});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class ProfileScreen extends StatelessWidget {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ProfileOverviewWidget(studentData: studentData),
-            ProfileDetailsWidget(studentData: studentData),
+            ProfileOverviewWidget(instructorData: instructorData),
+            ProfileDetailsWidget(instructorData: instructorData),
           ],
         ));
   }
